@@ -1,3 +1,4 @@
+//src/app/product/[id]/delete/page.tsx
 'use client';
 
 import { useEffect, useState, use } from 'react';
@@ -93,6 +94,17 @@ export default function DeleteProduct({
             <p className="text-gray-400">
               ราคา: {product.price.toLocaleString()} บาท
             </p>
+            <div className="flex flex-wrap gap-2 mt-2">
+              {product.color?.map((c, i) => (
+                <span
+                  key={i}
+                  className="px-2 py-0.5 text-xs rounded-full bg-red-500/20 text-red-300 border border-red-400/40"
+                >
+                  {c}
+                </span>
+              ))}
+            </div>
+
             <p className="text-gray-400 mt-2">
               {product.description || 'ไม่มีรายละเอียด'}
             </p>
@@ -117,10 +129,9 @@ export default function DeleteProduct({
               onClick={handleDelete}
               disabled={deleting}
               className={`px-6 py-2 rounded-xl font-semibold transition
-                ${
-                  deleting
-                    ? 'bg-gray-600 cursor-not-allowed'
-                    : 'bg-gradient-to-r from-red-600 to-pink-600 hover:scale-105 shadow-lg shadow-red-500/30'
+                ${deleting
+                  ? 'bg-gray-600 cursor-not-allowed'
+                  : 'bg-gradient-to-r from-red-600 to-pink-600 hover:scale-105 shadow-lg shadow-red-500/30'
                 }`}
             >
               {deleting ? 'กำลังลบ...' : '🗑️ ลบสินค้า'}
